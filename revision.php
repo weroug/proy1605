@@ -1,4 +1,5 @@
 <?php
+session_start();
 $PATH='lib/';
 
 include  $PATH.'lib/Conexion.php';
@@ -6,14 +7,15 @@ include $PATH.'lib/Usuario.php';
 
 $oUsr=new Usuario();
 
-$oUsr->nombre='flopez';
+$oUsr->nombre=$_POST['nombre'];
+$oUsr->clave=$_POST['clave'];
 
    
         
 if ($oUsr->VerificaUsuario()) {
-    echo "existe";
-} else
-    echo "No existe";
+$_SESSION['USR']=$oUsr;
+}
+header('Location:http://localhost:8081/proy1605/');
     
 
 
